@@ -77,7 +77,7 @@ function likeArticle() {
         'cancelable': true
     });
     // likeButton.parentElement.parentElement.parentElement.click();
-    article.querySelectorAll('[role="button"]')[1].dispatchEvent(clickEvent);
+    article.querySelectorAll('[role="button"]')[1].dispatchEvent(event);
 }
 
 function disLikeArticle() {
