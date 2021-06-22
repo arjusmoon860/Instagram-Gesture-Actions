@@ -1,6 +1,6 @@
 {
     "name": "Insta Gesture Actions",
-    "description": "An extension to do certain actions on google meet using google teachable machine models",
+    "description": "An extension to do certain actions on instagram based on gestures.",
     "version": "1.0",
     "manifest_version": 3,
     "content_scripts": [
