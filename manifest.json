@@ -1,0 +1,13 @@
+{
+    "name": "Arju's Bot",
+    "description": "An extension to do certain actions on google meet using google teachable machine models",
+    "version": "1.0",
+    "manifest_version": 3,
+    "content_scripts": [
+        {
+            "matches": [
+                "https://www.instagram.com/"
+            ]
+        }
+    ]
+}
