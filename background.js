@@ -62,7 +62,12 @@ function likeArticle() {
     const likeButton = article.querySelector(
         'svg[aria-label="Like"]'
     );
-    if (!likeButton) {
+    const dislikeButton = article.querySelector(
+        'svg[aria-label="Unlike"]'
+    );
+    console.log("likeButton", likeButton);
+    console.log("dislikeButton", dislikeButton);
+    if (likeButton && dislikeButton) {
         return;
     }
     const event = document.createEvent("MouseEvents");
@@ -113,11 +118,11 @@ async function predict() {
             likeArticle();
         }
     } else if (event === "Dislike" && max >= 1) {
-        // dislikeArticle();
         dislikeCount++;
         if (dislikeCount > minCounter) {
             console.log("Dislike");
             dislikeCount = 0;
+            disLikeArticle();
         }
     }
 }
