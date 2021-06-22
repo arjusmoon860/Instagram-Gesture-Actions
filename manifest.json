@@ -7,6 +7,11 @@
         {
             "matches": [
                 "https://www.instagram.com/"
+            ],
+            "js": [
+                "tf.min.js",
+                "teachablemachine-pose.min.js",
+                "background.js"
             ]
         }
     ]
