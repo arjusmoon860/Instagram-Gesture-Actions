@@ -31,12 +31,6 @@ async function loop(timestamp) {
     window.requestAnimationFrame(loop);
 }
 
-function doubleClickArticle(article) {
-    const clickEvent = document.createEvent("MouseEvents");
-    clickEvent.initEvent("dblclick", true, true);
-    article.dispatchEvent(clickEvent);
-}
-
 function getVisibleArticle() {
     const articleList = document.querySelectorAll("article");
     const articleListArray = Array.from(articleList);
@@ -71,12 +65,8 @@ function likeArticle() {
     if (!likeButton) {
         return;
     }
-    var event = new MouseEvent('dblclick', {
-        'view': window,
-        'bubbles': true,
-        'cancelable': true
-    });
-    // likeButton.parentElement.parentElement.parentElement.click();
+    const event = document.createEvent("MouseEvents");
+    event.initEvent("dblclick", true, true);
     article.querySelectorAll('[role="button"]')[1].dispatchEvent(event);
 }
 
