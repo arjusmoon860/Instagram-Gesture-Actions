@@ -3,6 +3,10 @@ console.log("Plugin started");
 const URL = "https://teachablemachine.withgoogle.com/models/DFviImW2m/";
 let model, webcam, ctx, labelContainer, maxPredictions;
 
+var likeCount = 0;
+var dislikeCount = 0;
+var minCounter = 8;
+
 async function init() {
     const modelURL = URL + "model.json";
     const metadataURL = URL + "metadata.json";
@@ -59,6 +63,34 @@ function getVisibleArticle() {
     }
 }
 
+function likeArticle() {
+    const article = getVisibleArticle();
+    const likeButton = article.querySelector(
+        'svg[aria-label="Like"]'
+    );
+    if (!likeButton) {
+        return;
+    }
+    var event = new MouseEvent('dblclick', {
+        'view': window,
+        'bubbles': true,
+        'cancelable': true
+    });
+    // likeButton.parentElement.parentElement.parentElement.click();
+    article.querySelectorAll('[role="button"]')[1].dispatchEvent(clickEvent);
+}
+
+function disLikeArticle() {
+    const article = getVisibleArticle();
+    const dislikeButton = article.querySelector(
+        'svg[aria-label="Unlike"]'
+    );
+    if (!dislikeButton) {
+        return;
+    }
+    dislikeButton.parentElement.parentElement.parentElement.click();
+}
+
 async function predict() {
     const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
     const prediction = await model.predict(posenetOutput);
@@ -81,13 +113,22 @@ async function predict() {
     })
     event = predictionsArray[index].event;
 
-
     getVisibleArticle();
 
-    if (event === "Like") {
-        likeArticle();
-    } else if (event === "Dislike") {
-        dislikeArticle();
+    if (event === "Like" && max >= 1) {
+        likeCount++;
+        if (likeCount > minCounter) {
+            console.log("Like");
+            likeCount = 0;
+            likeArticle();
+        }
+    } else if (event === "Dislike" && max >= 1) {
+        // dislikeArticle();
+        dislikeCount++;
+        if (dislikeCount > minCounter) {
+            console.log("Dislike");
+            dislikeCount = 0;
+        }
     }
 }
 
