@@ -65,8 +65,6 @@ function likeArticle() {
     const dislikeButton = article.querySelector(
         'svg[aria-label="Unlike"]'
     );
-    console.log("likeButton", likeButton);
-    console.log("dislikeButton", dislikeButton);
     if (likeButton && dislikeButton) {
         return;
     }
